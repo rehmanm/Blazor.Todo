@@ -1,0 +1,20 @@
+﻿@rendermode InteractiveServer
+
+<header>
+    <div class="grid grid-cols-3 p-10 items-center">
+        <TailBlazorHeroIcon Icon="HeroIcon.Adjustments" IconStyle="IconStyle.Solid" />
+        <NavLink >
+            Todo Blazor Tailwind
+        </NavLink>
+        <div class="flex items-center justify-end space-x-2">
+            <DarkModeButton OnDarkModeToggled="@OnDarkModeToggled" />
+            <span>Subsribe</span>
+        </div>
+    </div>
+</header>
+
+@code {
+
+    [Parameter]
+    public EventCallback<bool> OnDarkModeToggled { get; set; }
+}
