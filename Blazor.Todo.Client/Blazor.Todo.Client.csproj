@@ -14,4 +14,8 @@
     <PackageReference Include="TailBlazor.HeroIcons" Version="1.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Blazor.Todo.Shared\Blazor.Todo.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -40,9 +40,6 @@ else
     private async Task SetTheme(string theme)  {
         await _localstorage.SetItemAsStringAsync("theme", theme);
         currentTheme = theme;
-
-        Console.WriteLine($"SetTheme, {_darkMode}, {currentTheme}");
         await OnDarkModeToggled.InvokeAsync(_darkMode);
     }
-
 }

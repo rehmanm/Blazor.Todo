@@ -1,14 +1,24 @@
 ﻿
-
 <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-10 gap-10">
-    <Todo Description="First Todo" />
-    <Todo Description="Second Todo" />
-    <Todo Description="Third Todo" />
-    <Todo Description="Fourth Todo" />
+
+    @foreach (var todo in _todoItems) {
+        <Todo TodoItem="todo" />
+    }
 </main>
 
 
 
 @code {
+    private List<TodoItem> _todoItems { get; set; } = new List<TodoItem>();
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        await Task.Run(() =>
+        {
+            _todoItems.Add(new TodoItem { Title = "First", DueDate = DateTime.Now.AddDays(7) });
+        });
+    }
+
 
 }
