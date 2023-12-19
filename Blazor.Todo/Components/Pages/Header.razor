@@ -7,14 +7,12 @@
             Todo Blazor Tailwind
         </NavLink>
         <div class="flex items-center justify-end space-x-2">
-            <DarkModeButton OnDarkModeToggled="@OnDarkModeToggled" />
+            <DarkModeButton   />
             <span>Subsribe</span>
         </div>
     </div>
 </header>
 
 @code {
-
-    [Parameter]
-    public EventCallback<bool> OnDarkModeToggled { get; set; }
+     
 }

@@ -10,9 +10,37 @@
     <HeadOutlet />
 </head>
 
-<body>
-    <Routes @rendermode="InteractiveServer" />
+<body class="bg-gray-100 dark:bg-zinc-900 transition-all duration-700">
+    <Routes />
     <script src="_framework/blazor.web.js"></script>
+
+    <script type="text/javascript">
+     
+        window.setDarkMode = (isDarkMode) => { 
+            let root = document.documentElement
+            if (isDarkMode) {
+                root.classList.add("dark");
+                root.style.colorScheme = "dark";
+                localStorage.setItem("theme", "dark");
+
+            } else {
+                root.classList.remove("dark");
+                root.style.colorScheme = "light";
+                localStorage.setItem("theme", "light");
+            }
+        }
+
+        const prefersDarkQuery = "(prefers-color-scheme: dark)";
+
+        window.isBorwserDarkMode = () => window.matchMedia(prefersDarkQuery).matches || localStorage.getItem("theme") === "dark";
+
+        window.addThemeEventListener = (dotnet) => { 
+            window.matchMedia(prefersDarkQuery).addEventListener("change", event => {
+                dotnet.invokeMethodAsync("SetDarkMode", event.matches);
+            }); 
+        }
+    
+    </script>
 </body>
 
 </html>

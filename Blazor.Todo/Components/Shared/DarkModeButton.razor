@@ -1,45 +1,44 @@
-﻿﻿
-@inject ILocalStorageService _localstorage;
+﻿@using Blazor.Todo.Helper
+
+@inject AppTheme theme;
 @rendermode InteractiveServer
 
-@if (currentTheme == "dark")
+ 
+
+@if (theme.IsDarkMode)
 {
-    <button type="button" @onclick="@(async () => await SetTheme("light"))">
+    <button type="button" @onclick="@( () => SetTheme(false))">
         <TailBlazorHeroIcon Icon="HeroIcon.Sun" Class="h-8 w-8 cursor-pointer text-yellow-500" IconStyle="IconStyle.Solid" />
     </button>
 }
 else
 {
-    <button type="button" @onclick="@(async () => await SetTheme("dark"))">
+    <button type="button" @onclick="@(() => SetTheme(true))">
         <TailBlazorHeroIcon Icon="HeroIcon.Moon" Class="h-8 w-8 cursor-pointer text-gray-900" IconStyle="IconStyle.Solid" />
     </button>
 }
 
 @code {
-    private string currentTheme = "light";
-
-    [Parameter]
-    public EventCallback<bool> OnDarkModeToggled { get; set; }
-
-    private bool _darkMode => currentTheme == "dark";
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            if (!(await _localstorage.ContainKeyAsync("theme")))
-            {
-                await _localstorage.SetItemAsync("theme", "light");
-            }
-
-            currentTheme = await _localstorage.GetItemAsStringAsync("theme");
-            await OnDarkModeToggled.InvokeAsync(_darkMode);
+            theme.IsDarkMode = await theme.IsBrowserDarkMode();
+            await theme.ListenForThemeChanges();
+            StateHasChanged();
         }
     }
+    protected override void OnInitialized()
+    {
+        theme.OnChange += StateHasChanged;
+    }
 
-    private async Task SetTheme(string theme)  {
-        await _localstorage.SetItemAsStringAsync("theme", theme);
-        currentTheme = theme;
-        await OnDarkModeToggled.InvokeAsync(_darkMode);
+    public void Dispose()
+    {
+        theme.OnChange -= StateHasChanged;
+    }
+
+    private void SetTheme(bool isDarkMode)  {
+        theme.IsDarkMode = isDarkMode;
     }
 }

@@ -17,6 +17,7 @@
         await Task.Run(() =>
         {
             _todoItems.Add(new TodoItem { Title = "First", DueDate = DateTime.Now.AddDays(7) });
+            _todoItems.Add(new TodoItem { Title = "Second", DueDate = DateTime.Now.AddDays(7), IsComplete = true});
         });
     }
 

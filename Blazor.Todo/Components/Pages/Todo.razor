@@ -1,13 +1,22 @@
 ﻿
 <article class="bg-slate-100 dark:bg-slate-800 flex flex-col rounded-lg shadow-sm hover:scale-105 hover:shadow-xl hover:bg-slate-200 transition-all duration-200 ease-out">
 
-    <div class="flex-1 flex flex-col @(TodoItem.IsComplete ? "" : "border border-solid border-red-500") rounded-lg">
+    <div class="flex-1 flex flex-col @GetTodoPriority() rounded-lg">
         <div class="flex-1 flex flex-col p-5">
             <h2 class="font-bold font-serif">@TodoItem.Title</h2>
 
-            <footer class="text-xs text-right ml-auto flex space-x-1 pt-5 italic text-gray-400">
-                <p>@TodoItem.DueDate</p>
-            </footer>
+            @if (TodoItem.IsComplete)
+            {
+                <footer class="text-xs flex space-x-1 pt-5 ">
+                    <TailBlazorHeroIcon Icon="HeroIcon.CheckCircle" IconStyle="IconStyle.Solid" />
+                </footer>
+            }
+            else
+            {
+                <footer class="text-xs ml-auto flex space-x-1 pt-5 italic text-gray-400">
+                    <p>@TodoItem.DueDate</p>
+                </footer>
+            }
         </div>
     </div>
 
@@ -16,4 +25,11 @@
 
     [Parameter]
     public TodoItem TodoItem { get; set; }
+
+    private string GetTodoPriority()
+    {
+        return TodoItem.IsComplete
+                ? ""
+                : "border border-solid border-red-500";
+    }
 }

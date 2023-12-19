@@ -1,5 +1,5 @@
 using Blazor.Todo.Components;
-using Blazored.LocalStorage;
+using Blazor.Todo.Helper; 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,8 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
-
-builder.Services.AddBlazoredLocalStorage();
+ 
+builder.Services.AddScoped<AppTheme>();
 
 var app = builder.Build();
 

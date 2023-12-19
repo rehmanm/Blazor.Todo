@@ -1,13 +1,12 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="@(_darkMode ? "dark" : null)">
-    <div class="bg-gray-100 dark:bg-zinc-900 transition-all duration-700 dark:text-white">
-        <Header OnDarkModeToggled="@HandleDarkModeToggled" />
-        <div className="max-w-6xl mx-auto">
-            @Body
-        </div>
-    </div>
+
+<Header />
+<div className="max-w-6xl mx-auto">
+    @Body
 </div>
+
+
 
 <div id="blazor-error-ui">
     An unhandled error has occurred.
@@ -17,10 +16,5 @@
 
 @code
 {
-    private bool _darkMode = false;
 
-    private void HandleDarkModeToggled(bool isDarkMode)
-    {
-        _darkMode = isDarkMode;
-    }
 }
