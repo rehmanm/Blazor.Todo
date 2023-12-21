@@ -1,4 +1,5 @@
-﻿ 
+﻿@inject AppTheme theme
+
 <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-10 gap-10">
 
     @foreach (var todo in TodoItems) {
@@ -12,5 +13,13 @@
     [Parameter]
     public List<Todos> TodoItems { get; set; } = new List<Todos>();
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
 
+        if (firstRender)
+        {
+            theme.IsDarkMode = await theme.IsBrowserDarkMode();
+            StateHasChanged();
+        }
+    }
 }
