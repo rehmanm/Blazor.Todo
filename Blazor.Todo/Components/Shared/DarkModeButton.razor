@@ -1,6 +1,4 @@
-﻿@using Blazor.Todo.Helper
-
-@inject AppTheme theme;
+﻿@inject AppTheme theme;
 @rendermode InteractiveServer
 
  
@@ -18,11 +16,12 @@ else
     </button>
 }
 
-@code {
+@code { 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
+
         if (firstRender)
-        {
+        {          
             theme.IsDarkMode = await theme.IsBrowserDarkMode();
             await theme.ListenForThemeChanges();
             StateHasChanged();

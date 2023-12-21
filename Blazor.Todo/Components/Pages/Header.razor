@@ -1,18 +1,19 @@
-﻿@rendermode InteractiveServer
-
-<header>
+﻿<header>
     <div class="grid grid-cols-3 p-10 items-center">
-        <TailBlazorHeroIcon Icon="HeroIcon.Adjustments" IconStyle="IconStyle.Solid" />
-        <NavLink >
+        <NavLink href="/">
+            <TailBlazorHeroIcon Icon="HeroIcon.Adjustments" IconStyle="IconStyle.Solid" />
+        </NavLink>
+        <NavLink>
             Todo Blazor Tailwind
         </NavLink>
         <div class="flex items-center justify-end space-x-2">
-            <DarkModeButton   />
-            <span>Subsribe</span>
+            <DarkModeButton />
+            <span>Subscribe</span>
         </div>
     </div>
+
+    <NavLinks />
 </header>
 
 @code {
-     
 }

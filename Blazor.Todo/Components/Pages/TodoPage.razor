@@ -1,0 +1,30 @@
+﻿@page "/todos"
+@page "/todos/{categoryName}"
+
+@inject ITodoService _todoService
+@rendermode InteractiveServer
+
+<TodoItemList TodoItems="@_todoItems" />
+
+@code {
+
+    [Parameter]
+    public string? categoryName { get; set; }
+
+    public List<Todos> _todoItems { get; set; } = new List<Todos>();
+
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (!string.IsNullOrEmpty(categoryName))
+        {
+            _todoItems = await _todoService.GetTodosByCategoryAsync(categoryName);
+            StateHasChanged();
+        }
+        else
+        {
+            _todoItems = await _todoService.GetTodosAsync();
+            StateHasChanged();
+        }
+    }
+}

@@ -1,0 +1,20 @@
+﻿
+
+<NavLink class="@(IsActive ? "navLink underline decoration-orange-400 e-400 underline-offset-4 font-bold text-lg" : "navLink")" href="@GetNavigationLink()">
+    @Category.CategoryName
+</NavLink>
+
+
+@code {
+
+    [Parameter]
+    public Category Category { get; set; }
+
+    [Parameter]
+    public bool IsActive { get; set; } = false;
+
+    private string GetNavigationLink()
+    {
+        return $"/todos/{Category.CategoryName}";
+    }
+}

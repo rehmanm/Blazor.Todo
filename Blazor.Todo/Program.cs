@@ -1,5 +1,7 @@
 using Blazor.Todo.Components;
-using Blazor.Todo.Helper; 
+using Blazor.Todo.Helper;
+using Blazor.Todo.Shared.Services.CategoryService;
+using Blazor.Todo.Shared.Services.TodoService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
  
 builder.Services.AddScoped<AppTheme>();
+builder.Services.AddSingleton<ICategoryService, CategoryService>();
+builder.Services.AddSingleton<ITodoService, TodoService>();
 
 var app = builder.Build();
 

@@ -1,0 +1,30 @@
+﻿@inject NavigationManager navigationManager
+@inject ICategoryService _categoryService;
+
+<nav class="grid grid-cols-4 md:grid-cols-7 text-xs md:text-sm gap-4 pb-10 max-w-6xl mx-auto border-b">
+
+    <NavLink class="navLink" href="/todos">
+        All
+    </NavLink>
+    @foreach (Category category in _categorys)
+    {
+        <CategoryNavLink Category="@category" IsActive="@IsActive(category)" @rendermode="InteractiveServer" />
+    }
+
+</nav>
+
+@code {
+    private List<Category> _categorys = new List<Category>();
+
+    private bool IsActive(Category category)
+    {
+        return navigationManager.Uri.ToLower().Contains(category.CategoryName.ToLower());
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _categorys = await _categoryService.GetCategoriesAsync();
+        StateHasChanged();
+    }
+
+}

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Todo", "Blazor.Todo\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Todo.Client", "Blazor.Todo.Client\Blazor.Todo.Client.csproj", "{A799FA25-ED34-4F26-9C22-271DE1CB651C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor.Todo.Shared", "Blazor.Todo.Shared\Blazor.Todo.Shared.csproj", "{30F2AC51-C48B-4705-8E10-4DB6AA7275BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blazor.Todo.Shared", "Blazor.Todo.Shared\Blazor.Todo.Shared.csproj", "{30F2AC51-C48B-4705-8E10-4DB6AA7275BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
