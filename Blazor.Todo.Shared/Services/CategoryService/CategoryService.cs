@@ -18,6 +18,10 @@ namespace Blazor.Todo.Shared.Services.CategoryService
                         CategoryId = 2,
                         CategoryName = "Sports",
                     },
+                    new Category{
+                        CategoryId = 3,
+                        CategoryName = "Learning",
+                    },
                 };
             });
         }

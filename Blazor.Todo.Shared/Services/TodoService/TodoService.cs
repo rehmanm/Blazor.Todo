@@ -7,8 +7,8 @@ namespace Blazor.Todo.Shared.Services.TodoService
         private readonly List<Todos> _todoList = new List<Todos>();
         public TodoService()
         {
-            _todoList.Add(new Todos { Title = "First", DueDate = DateTime.Now.AddDays(7), CategoryName = "Sports" });
-            _todoList.Add(new Todos { Title = "Second", DueDate = DateTime.Now.AddDays(7), IsComplete = true, CategoryName = "Health" });
+            _todoList.Add(new Todos {Id=1, Title = "First", DueDate = DateTime.Now.AddDays(7), CategoryName = "Sports" });
+            _todoList.Add(new Todos {Id=2, Title = "Second", DueDate = DateTime.Now.AddDays(7), IsComplete = true, CategoryName = "Health" });
         }
         public async Task<List<Todos>> GetTodosAsync()
         {
@@ -22,6 +22,18 @@ namespace Blazor.Todo.Shared.Services.TodoService
                 var items = _todoList.Where(todo => todo.CategoryName.ToLower() == categoryName.ToLower()).ToList();
                 return items;
             });
+        }
+
+        public async Task<Todos> UpdateTodo(int id, Todos updatedTodos)
+        {
+            var index = _todoList.FindIndex(todo => todo.Id == id);
+
+            if (index != -1)
+            {
+                _todoList[index] = updatedTodos;
+            }
+
+            return await Task.FromResult(updatedTodos); 
         }
     }
 }

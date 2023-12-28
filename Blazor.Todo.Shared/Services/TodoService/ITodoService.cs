@@ -6,5 +6,7 @@ namespace Blazor.Todo.Shared.Services.TodoService
     {
         Task<List<Todos>> GetTodosAsync();
         Task<List<Todos>> GetTodosByCategoryAsync(string categoryName);
+
+        Task<Todos> UpdateTodo(int id, Todos updatedTodos);
     }
 }
